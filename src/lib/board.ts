@@ -1,5 +1,5 @@
 export type PixelPlacement = {
-  clientName: string;
+  companyName: string;
   href: string;
   start: number;
   length: number;
@@ -35,19 +35,19 @@ export const boardPixels = Array.from({ length: totalPixels }, (_, index) => {
       id: index,
       className: `boardPixel ${placement.color}`,
       href: placement.href,
-      label: `${placement.clientName} sponsored pixel ${index + 1}`,
+      label: `${placement.companyName} deal pixel ${index + 1}`,
       isClaimed: true,
-      sponsor: placement.clientName,
+      company: placement.companyName,
     };
   }
 
   return {
     id: index,
     className: `boardPixel ${availableColors[index % availableColors.length]}`,
-    href: "/#reserve",
+    href: "/payment",
     label: `Available pixel ${index + 1}`,
     isClaimed: false,
-    sponsor: "Available",
+    company: "Available",
   };
 });
 

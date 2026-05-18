@@ -1,8 +1,8 @@
 {
-  "name": "pixel-lease",
+  "name": "deal-grid",
   "version": "0.1.0",
   "private": true,
-  "description": "A static-first pixel advertising marketplace built with open-source tools.",
+  "description": "A static-first visual board for brand deals, coupon codes, and promo portals.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

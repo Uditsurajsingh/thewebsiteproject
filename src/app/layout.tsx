@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { brand } from "@/lib/brand";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PixelLease | Rent Pixels for Ads",
-  description:
-    "A beautiful, static-first marketplace where brands rent pixels on a public advertising board.",
+  title: `${brand.name} | Brand Deals, Coupon Codes, and Promo Portals`,
+  description: brand.tagline,
 };
 
 export const viewport: Viewport = {

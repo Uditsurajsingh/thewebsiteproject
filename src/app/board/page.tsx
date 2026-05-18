@@ -1,9 +1,10 @@
 import { boardConfig, boardPixels, claimedPixels, placements } from "@/lib/board";
+import { brand } from "@/lib/brand";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Pixel Board | PixelLease",
-  description: "A full-screen pixel advertising board where claimed pixels link to real clients.",
+  title: `Deal Grid | ${brand.name}`,
+  description: "A full-screen brand deal grid where claimed pixels link to real offers.",
 };
 
 export default function BoardPage() {
@@ -22,21 +23,21 @@ export default function BoardPage() {
             <span />
             <span />
           </span>
-          PixelLease
+          {brand.name}
         </Link>
         <div className="boardStatus" aria-label="Board status">
           <span>
             {boardConfig.columns} x {boardConfig.rows} board
           </span>
           <span>{claimedPixels.toLocaleString()} claimed</span>
-          <span>{placements.length} clients</span>
+          <span>{placements.length} companies</span>
         </div>
-        <Link className="headerCta" href="/#reserve">
-          Rent pixels
+        <Link className="headerCta" href="/payment">
+          Add company
         </Link>
       </header>
 
-      <section className="fullBoardWrap" aria-label="Full sponsor pixel board">
+      <section className="fullBoardWrap" aria-label="Full brand deal grid">
         <div className="fullBoard">
           {boardPixels.map((pixel) => (
             <a
@@ -46,7 +47,7 @@ export default function BoardPage() {
               key={pixel.id}
               rel={pixel.isClaimed ? "noreferrer" : undefined}
               target={pixel.isClaimed ? "_blank" : undefined}
-              title={`${pixel.sponsor} sponsor link`}
+              title={pixel.isClaimed ? `${pixel.company} offer link` : "Available placement"}
             />
           ))}
         </div>

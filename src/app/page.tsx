@@ -6,36 +6,25 @@ import {
   previewPixels,
   totalPixels,
 } from "@/lib/board";
+import { brand } from "@/lib/brand";
 import Link from "next/link";
 
-const packages = [
-  {
-    name: "Micro Drop",
-    size: "10 x 10",
-    price: "$100",
-    detail: "A compact logo, launch badge, or collector stamp.",
-  },
-  {
-    name: "Signal Block",
-    size: "50 x 50",
-    price: "$2,500",
-    detail: "Enough room for a bold mark and recognizable art direction.",
-  },
-  {
-    name: "Landmark",
-    size: "100 x 100",
-    price: "$10,000",
-    detail: "A permanent board anchor for a brand, product, or movement.",
-  },
+const dealTypes = [
+  "Coupon codes",
+  "Student offers",
+  "Launch discounts",
+  "Cashback portals",
+  "Brand campaigns",
+  "Limited drops",
 ];
 
 const principles = [
-  "Static-first public pages",
-  "Open-source stack",
-  "SQLite before Postgres",
-  "S3-compatible assets",
-  "No vendor lock-in",
-  "One API route per paid workflow",
+  "Real offer links only",
+  "No fake company counts",
+  "Static-first public board",
+  "Open-source codebase",
+  "Cheap to host",
+  "Payment flow separated",
 ];
 
 export default function Home() {
@@ -44,7 +33,7 @@ export default function Home() {
       <section className="hero">
         <div className="heroBackdrop" aria-hidden="true" />
         <header className="siteHeader">
-          <a className="brand" href="#">
+          <Link className="brand" href="/">
             <span className="brandMark" aria-hidden="true">
               <span />
               <span />
@@ -56,57 +45,62 @@ export default function Home() {
               <span />
               <span />
             </span>
-            PixelLease
-          </a>
+            {brand.name}
+          </Link>
           <nav aria-label="Primary navigation">
-            <Link href="/board">Board</Link>
-            <a href="#pricing">Pricing</a>
-            <a href="#stack">Stack</a>
+            <Link href="/board">Deal grid</Link>
+            <a href="#categories">Categories</a>
+            <Link href="/payment">For brands</Link>
           </nav>
-          <a className="headerCta" href="#reserve">
-            Claim pixels
-          </a>
+          <Link className="headerCta" href="/board">
+            Open board
+          </Link>
         </header>
 
         <div className="heroGrid">
           <div className="heroCopy">
-            <p className="eyebrow">Rent tiny ad territory</p>
-            <h1>{totalPixels.toLocaleString()} pixels. Zero pretend hype.</h1>
+            <p className="eyebrow">Brand deals, coupon codes, promo links</p>
+            <h1>{brand.shortTagline}</h1>
             <p className="lede">
-              A seductive public pixel wall where every claimed square links to
-              a real client. Today the board is open, honest, and ready for its
-              first sponsors.
+              Browse a visual grid of discounts, coupon pages, and marketing
+              portals from companies that want shoppers to find their best
+              offers fast. Claimed pixels point to real company links, never
+              placeholder brands or inflated counts.
             </p>
+            <div className="dealSearch" role="search">
+              <input aria-label="Search brand deals" placeholder="Search brands, coupons, portals" />
+              <Link href="/board">Browse live board</Link>
+            </div>
             <div className="heroActions">
-              <a className="primaryButton" href="#reserve">
-                Reserve a block
-              </a>
-              <Link className="secondaryButton" href="/board">
-                View the board
+              <Link className="primaryButton" href="/board">
+                Explore brand deals
+              </Link>
+              <Link className="secondaryButton" href="/payment">
+                Add your company
               </Link>
             </div>
             <dl className="metrics" aria-label="Board metrics">
               <div>
-                <dt>Total pixels</dt>
+                <dt>Total slots</dt>
                 <dd>{totalPixels.toLocaleString()}</dd>
               </div>
               <div>
-                <dt>Claimed</dt>
+                <dt>Live offers</dt>
                 <dd>{claimedPixels.toLocaleString()}</dd>
               </div>
               <div>
-                <dt>Available</dt>
-                <dd>{availablePixels.toLocaleString()}</dd>
+                <dt>Companies</dt>
+                <dd>{placements.length.toLocaleString()}</dd>
               </div>
             </dl>
           </div>
 
-          <div className="boardShell" id="board">
+          <div className="boardShell">
             <div className="boardToolbar">
-              <span>Real board preview</span>
-              <span>{placements.length} clients live</span>
+              <span>Live deal grid preview</span>
+              <span>{availablePixels.toLocaleString()} slots open</span>
             </div>
-            <div className="pixelBoard" aria-label="Pixel advertising board">
+            <div className="pixelBoard" aria-label="Deal board preview">
               {previewPixels.map((pixel) => (
                 <a
                   aria-label={pixel.label}
@@ -122,106 +116,80 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="ticker" aria-label="Example advertisers">
-        <span>Launches</span>
-        <span>Creators</span>
-        <span>SaaS</span>
-        <span>Indie games</span>
-        <span>Newsletters</span>
-        <span>Events</span>
-        <span>Studios</span>
+      <section className="ticker" aria-label="Brand deal categories">
+        {dealTypes.map((type) => (
+          <span key={type}>{type}</span>
+        ))}
       </section>
 
-      <section className="section split">
+      <section className="section split" id="categories">
         <div>
-          <p className="eyebrow">How it works</p>
-          <h2>Small space, sharp signal.</h2>
+          <p className="eyebrow">Shopper flow</p>
+          <h2>One place for shoppers who already want a deal.</h2>
         </div>
         <div className="steps">
           <article>
             <span>01</span>
-            <h3>Pick territory</h3>
-            <p>Choose a rectangle that fits your campaign and budget.</p>
+            <h3>Scan the board</h3>
+            <p>Use the grid to scan for brands, categories, and active offer pages.</p>
           </article>
           <article>
             <span>02</span>
-            <h3>Upload art</h3>
-            <p>Use pixel art, a logo, a product crop, or a tiny manifesto.</p>
+            <h3>Open the offer</h3>
+            <p>Claimed pixels go directly to the company’s coupon, sale, or campaign portal.</p>
           </article>
           <article>
             <span>03</span>
-            <h3>Link forever</h3>
-            <p>Your patch becomes a permanent doorway to your URL.</p>
+            <h3>Compare promos</h3>
+            <p>No fake rankings. The grid shows only what is actually live in the data.</p>
           </article>
         </div>
       </section>
 
-      <section className="section pricing" id="pricing">
+      <section className="section pricing">
         <div className="sectionIntro">
-          <p className="eyebrow">Pricing</p>
-          <h2>Brutally simple economics.</h2>
+          <div>
+            <p className="eyebrow">For companies</p>
+            <h2>Companies get a separate placement flow.</h2>
+          </div>
           <p>
-            One pixel costs ${boardConfig.pricePerPixelUsd}. Start tiny, buy a
-            campaign block, or become the first landmark on the board.
+            The homepage stays focused on shoppers searching for brand deals.
+            Company placement, sizing, price estimates, and campaign URLs live
+            in a separate payment flow.
           </p>
         </div>
         <div className="packageGrid">
-          {packages.map((item) => (
-            <article className="packageCard" key={item.name}>
-              <p>{item.size}</p>
-              <h3>{item.name}</h3>
-              <strong>{item.price}</strong>
-              <span>{item.detail}</span>
-            </article>
-          ))}
+          <article className="packageCard">
+            <p>Public board</p>
+            <h3>{boardConfig.columns} x {boardConfig.rows}</h3>
+            <strong>{totalPixels.toLocaleString()}</strong>
+            <span>Total deal slots available in the current production board model.</span>
+          </article>
+          <article className="packageCard">
+            <p>Real inventory</p>
+            <h3>{availablePixels.toLocaleString()} open</h3>
+            <strong>{claimedPixels.toLocaleString()}</strong>
+            <span>Live offers are derived from actual placement data only.</span>
+          </article>
+          <article className="packageCard">
+            <p>Brand flow</p>
+            <h3>Separate checkout</h3>
+            <strong>${boardConfig.pricePerPixelUsd}</strong>
+            <span>Per-pixel estimate before payment provider integration.</span>
+          </article>
         </div>
       </section>
 
       <section className="section stack" id="stack">
         <div>
-          <p className="eyebrow">Scalable, frugal, open</p>
-          <h2>Designed to stay cheap until success demands otherwise.</h2>
+          <p className="eyebrow">Production posture</p>
+          <h2>Honest data first, monetization second.</h2>
         </div>
         <div className="principleGrid">
           {principles.map((principle) => (
             <span key={principle}>{principle}</span>
           ))}
         </div>
-      </section>
-
-      <section className="reserve" id="reserve">
-        <div className="reserveCopy">
-          <p className="eyebrow">Reserve</p>
-          <h2>Claim your corner of the board.</h2>
-          <p>
-            This form is ready to wire into storage and payments. For now, the
-            API returns a clean reservation estimate so the product flow is easy
-            to extend.
-          </p>
-        </div>
-        <form action="/api/reservations" method="post">
-          <label>
-            Brand
-            <input name="brand" placeholder="Neon Sandwich" required />
-          </label>
-          <label>
-            Email
-            <input name="email" placeholder="you@example.com" required type="email" />
-          </label>
-          <label>
-            Width
-            <input min="10" name="width" placeholder="100" required type="number" />
-          </label>
-          <label>
-            Height
-            <input min="10" name="height" placeholder="50" required type="number" />
-          </label>
-          <label className="wide">
-            Destination URL
-            <input name="url" placeholder="https://example.com" required type="url" />
-          </label>
-          <button type="submit">Request reservation</button>
-        </form>
       </section>
     </main>
   );
