@@ -1,5 +1,6 @@
 import { boardConfig, boardPixels, claimedPixels, placements } from "@/lib/board";
 import { brand } from "@/lib/brand";
+import { ConsentModal } from "./consent-modal";
 import Link from "next/link";
 
 export const metadata = {
@@ -32,9 +33,6 @@ export default function BoardPage() {
           <span>{claimedPixels.toLocaleString()} claimed</span>
           <span>{placements.length} companies</span>
         </div>
-        <Link className="headerCta" href="/payment">
-          Add company
-        </Link>
       </header>
 
       <section className="fullBoardWrap" aria-label="Full brand deal grid">
@@ -52,6 +50,7 @@ export default function BoardPage() {
           ))}
         </div>
       </section>
+      <ConsentModal />
     </main>
   );
 }

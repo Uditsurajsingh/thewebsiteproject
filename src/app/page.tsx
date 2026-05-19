@@ -43,7 +43,6 @@ export default function Home() {
           <h1>{brand.shortTagline}</h1>
           <p className="lede">
             A visual grid for brand deals, coupon codes, and promo portals.
-            Start as a shopper, or list an offer as a publisher.
           </p>
           <div className="portalActions" aria-label="Portal links">
             <Link className="primaryButton" href="/board">
@@ -53,16 +52,6 @@ export default function Home() {
               Publisher portal
             </Link>
           </div>
-          <dl className="metrics" aria-label="DealGrid inventory">
-            <div>
-              <dt>Total slots</dt>
-              <dd>{totalPixels.toLocaleString()}</dd>
-            </div>
-            <div>
-              <dt>Available</dt>
-              <dd>{availablePixels.toLocaleString()}</dd>
-            </div>
-          </dl>
         </div>
 
         <Link className="homeBoardShell" href="/board" aria-label="Open consumer portal">
@@ -82,6 +71,17 @@ export default function Home() {
           </div>
         </Link>
       </section>
+
+      <dl className="metrics homeBottomMetrics" aria-label="DealGrid inventory">
+        <div>
+          <dt>Total slots</dt>
+          <dd>{totalPixels.toLocaleString()}</dd>
+        </div>
+        <div>
+          <dt>Available slots</dt>
+          <dd>{availablePixels.toLocaleString()}</dd>
+        </div>
+      </dl>
     </main>
   );
 }

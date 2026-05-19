@@ -1,5 +1,6 @@
 import { availablePixels, boardConfig, claimedPixels, totalPixels } from "@/lib/board";
 import { brand } from "@/lib/brand";
+import { PixelPicker } from "./pixel-picker";
 import Link from "next/link";
 
 const packages = [
@@ -91,13 +92,10 @@ export default function PaymentPage() {
               <input name="email" placeholder="growth@company.com" required type="email" />
             </label>
             <label>
-              Width in pixels
-              <input min="10" name="width" placeholder="10" required type="number" />
+              Duration in days
+              <input min="1" max="365" name="durationDays" placeholder="30" required type="number" />
             </label>
-            <label>
-              Height in pixels
-              <input min="10" name="height" placeholder="10" required type="number" />
-            </label>
+            <PixelPicker />
             <label className="wide">
               Coupon, discount, or brand portal URL
               <input name="url" placeholder="https://company.com/deals" required type="url" />

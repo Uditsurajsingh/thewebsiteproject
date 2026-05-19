@@ -1,39 +1,23 @@
 import { NextResponse } from "next/server";
-
-type ReservationRequest = {
-  brand?: string;
-  email?: string;
-  width?: number;
-  height?: number;
-  url?: string;
-};
+import { createAutomatedReservation } from "@/lib/reservations";
 
 export async function POST(request: Request) {
   const contentType = request.headers.get("content-type") || "";
   const body = contentType.includes("application/json")
-    ? ((await request.json().catch(() => null)) as ReservationRequest | null)
-    : Object.fromEntries(await request.formData()) as ReservationRequest;
+    ? await request.json().catch(() => null)
+    : Object.fromEntries(await request.formData());
 
-  if (!body?.brand || !body.email || !body.url) {
+  const result = createAutomatedReservation(body || {});
+
+  if (!result.ok) {
     return NextResponse.json(
-      { ok: false, message: "Brand, email, and URL are required." },
+      { ok: false, message: result.message },
       { status: 400 },
     );
   }
 
-  const width = Number(body.width || 0);
-  const height = Number(body.height || 0);
-  const pixels = Math.max(width * height, 0);
-
   return NextResponse.json({
     ok: true,
-    reservation: {
-      brand: body.brand,
-      email: body.email,
-      url: body.url,
-      pixels,
-      estimatedPriceUsd: pixels,
-      status: "received",
-    },
+    reservation: result.reservation,
   });
 }
