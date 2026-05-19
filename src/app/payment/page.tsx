@@ -48,11 +48,11 @@ export default function PaymentPage() {
             {brand.name}
           </Link>
           <nav aria-label="Payment navigation">
-            <Link href="/">Home</Link>
-            <Link href="/board">Board</Link>
+            <Link href="/">Home base</Link>
+            <Link href="/board">DealGrid</Link>
           </nav>
           <Link className="headerCta" href="/board">
-            View board
+            Open grid
           </Link>
         </header>
 

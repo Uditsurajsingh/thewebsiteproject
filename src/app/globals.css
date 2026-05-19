@@ -1,15 +1,15 @@
 :root {
-  --ink: #0f1110;
-  --paper: #fbf4e4;
-  --cream: #fffaf0;
-  --muted: #59635d;
-  --line: rgba(15, 17, 16, 0.18);
-  --coral: #ff5f49;
-  --gold: #ffc94d;
-  --green: #2f9d85;
-  --blue: #2d66b3;
-  --rose: #d8846b;
-  --mint: #e8f2ec;
+  --ink: #111126;
+  --paper: #fff1f7;
+  --cream: #fff8df;
+  --muted: #60617f;
+  --line: rgba(86, 73, 132, 0.2);
+  --coral: #ff4f7b;
+  --gold: #ffd166;
+  --green: #22c7a9;
+  --blue: #4f7cff;
+  --rose: #ff8fb8;
+  --mint: #ddfff6;
   --shadow: 8px 8px 0 var(--ink);
 }
 
@@ -50,6 +50,53 @@ main {
   overflow: hidden;
 }
 
+.homeBoardPage {
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 20px clamp(18px, 4vw, 56px) 34px;
+  position: relative;
+}
+
+.homeBoardHeader {
+  position: relative;
+  z-index: 1;
+}
+
+.homeBoardHero {
+  align-items: center;
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: minmax(320px, 0.72fr) minmax(520px, 1.28fr);
+  margin: 0 auto;
+  max-width: 1320px;
+  min-height: calc(100vh - 94px);
+  padding: clamp(28px, 5vw, 64px) 0 0;
+}
+
+.homeBoardCopy {
+  max-width: 560px;
+}
+
+.portalActions {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 32px;
+}
+
+.homeBoardShell {
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  box-shadow: 14px 14px 0 rgba(17, 17, 38, 0.24);
+  display: block;
+  min-width: 0;
+  padding: 10px;
+}
+
+.homePixelBoard {
+  min-height: min(68vh, 620px);
+}
+
 .hero {
   isolation: isolate;
   min-height: 100vh;
@@ -59,10 +106,12 @@ main {
 
 .heroBackdrop {
   background:
-    linear-gradient(90deg, rgba(15, 17, 16, 0.04) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(15, 17, 16, 0.04) 1px, transparent 1px),
-    linear-gradient(135deg, #ffe6d7 0%, #f8f1df 38%, #d9efe6 70%, #c9d8f2 100%);
-  background-size: 34px 34px, 34px 34px, auto;
+    radial-gradient(circle at 78% 18%, rgba(79, 124, 255, 0.32), transparent 26%),
+    radial-gradient(circle at 20% 22%, rgba(255, 79, 123, 0.34), transparent 28%),
+    linear-gradient(90deg, rgba(79, 124, 255, 0.13) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 79, 123, 0.12) 1px, transparent 1px),
+    linear-gradient(135deg, #fff1f7 0%, #fff8df 42%, #ddfff6 72%, #dfe6ff 100%);
+  background-size: auto, auto, 38px 38px, 38px 38px, auto;
   inset: 0;
   position: absolute;
   z-index: -1;
@@ -96,14 +145,17 @@ main {
 }
 
 .brandMark {
-  background: white;
-  border: 1px solid var(--line);
-  box-shadow: 4px 4px 0 var(--ink);
+  background: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  box-shadow:
+    4px 4px 0 var(--coral),
+    0 0 22px rgba(79, 124, 255, 0.28);
   display: grid;
   gap: 2px;
   grid-template-columns: repeat(3, 1fr);
   height: 40px;
   padding: 5px;
+  transform: rotate(-3deg);
   width: 40px;
 }
 
@@ -134,7 +186,7 @@ main {
 .brandMark span:nth-child(5),
 .tile-black,
 .ink {
-  background: var(--ink);
+  background: #ffffff;
 }
 
 .brandMark span:nth-child(6),
@@ -655,6 +707,7 @@ input:focus {
   }
 
   .heroGrid,
+  .homeBoardHero,
   .split,
   .stack,
   .reserve,
@@ -698,6 +751,7 @@ input:focus {
 
   .metrics,
   .heroActions,
+  .portalActions,
   .dealSearch,
   .reserve form {
     align-items: stretch;
